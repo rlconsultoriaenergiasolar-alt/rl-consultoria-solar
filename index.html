@@ -1,1 +1,748 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RL Consultoria em Energia Solar | Reduza sua conta de luz</title>
+<meta name="description" content="Consultoria especializada em energia solar fotovoltaica. Análise de viabilidade, proposta personalizada e acompanhamento até a instalação. Solicite uma simulação gratuita.">
+<link rel="icon" href="img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --cream:#F5F7F0;
+    --green-950:#0A2A20;
+    --green-900:#0E3B2C;
+    --green-800:#155039;
+    --green-700:#1C6046;
+    --gold:#F2A93B;
+    --gold-deep:#D98E1F;
+    --gold-light:#FBE3B8;
+    --ink:#12201A;
+    --slate:#54655C;
+    --line:#E1E6DA;
+    --hazard-dark:#1A1A1A;
+    --shadow: 0 20px 50px -20px rgba(10,42,32,0.35);
+    --radius: 18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  img{max-width:100%;display:block;}
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    color:var(--ink);
+    margin:0;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  .container{width:100%;max-width:1180px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--green-700);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px;height:7px;border-radius:2px;
+    background:var(--gold);
+    display:inline-block;
+    transform:rotate(45deg);
+  }
+  .eyebrow.on-dark{color:var(--gold-light);}
 
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:15.5px;
+    padding:15px 26px;border-radius:999px;border:1px solid transparent;
+    cursor:pointer;transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .btn-gold{
+    background:var(--gold);color:var(--green-950);
+    box-shadow:0 12px 24px -10px rgba(217,142,31,0.6);
+  }
+  .btn-gold:hover{background:var(--gold-deep);transform:translateY(-2px);}
+  .btn-outline-dark{
+    background:transparent;border-color:rgba(18,32,26,0.22);color:var(--ink);
+  }
+  .btn-outline-dark:hover{border-color:var(--green-900);background:rgba(14,59,44,0.05);}
+  .btn-outline-light{
+    background:transparent;border-color:rgba(255,255,255,0.4);color:var(--white);
+  }
+  .btn-outline-light:hover{background:rgba(255,255,255,0.12);}
+  .btn-whatsapp{
+    background:#1FAF52;color:var(--white);
+    box-shadow:0 12px 24px -10px rgba(31,175,82,0.55);
+  }
+  .btn-whatsapp:hover{background:#178C41;transform:translateY(-2px);}
+  .btn-sm{padding:11px 18px;font-size:14px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    transition:box-shadow .2s ease;
+  }
+  header.scrolled{box-shadow:0 6px 24px -18px rgba(10,42,32,0.5);}
+  .nav-wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:78px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;}
+  .brand img{height:44px;width:44px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--white),0 0 0 3px var(--line);}
+  .brand-text{font-family:'Space Grotesk',sans-serif;font-size:14.5px;line-height:1.2;color:var(--green-900);}
+  .brand-text strong{display:block;font-size:15.5px;}
+  nav.main-links{display:flex;align-items:center;gap:34px;}
+  nav.main-links a{
+    font-size:14.5px;font-weight:600;color:var(--ink);
+    position:relative;padding:4px 0;
+  }
+  nav.main-links a::after{
+    content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;
+    background:var(--gold);transform:scaleX(0);transform-origin:right;
+    transition:transform .25s ease;
+  }
+  nav.main-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+  .header-actions{display:flex;align-items:center;gap:14px;}
+  .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;}
+  .burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    min-height:92vh;
+    display:flex;align-items:flex-end;
+    color:var(--white);
+  }
+  .hero-media{position:absolute;inset:0;z-index:0;}
+  .hero-media img{width:100%;height:100%;object-fit:cover;}
+  .hero-media::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(10,42,32,0.35) 0%, rgba(10,42,32,0.55) 45%, rgba(9,32,24,0.92) 100%),
+      linear-gradient(90deg, rgba(9,32,24,0.75) 0%, rgba(9,32,24,0.15) 55%);
+  }
+  .hero-inner{
+    position:relative;z-index:2;width:100%;
+    padding:120px 0 64px;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:end;
+  }
+  .hero h1{
+    font-size:clamp(34px,4.6vw,58px);
+    margin:18px 0 20px;
+    max-width:640px;
+  }
+  .hero h1 em{
+    font-style:normal;color:var(--gold);
+  }
+  .hero p.lead{
+    font-size:17.5px;color:rgba(255,255,255,0.86);max-width:480px;margin-bottom:32px;
+  }
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;}
+
+  /* meter / signature panel */
+  .meter-panel{
+    background:rgba(10,32,24,0.72);
+    border:1px solid rgba(255,255,255,0.14);
+    backdrop-filter:blur(14px);
+    border-radius:16px;
+    padding:22px 22px 18px;
+    box-shadow:var(--shadow);
+  }
+  .meter-panel .hazard-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
+    letter-spacing:0.08em;text-transform:uppercase;
+    background:repeating-linear-gradient(135deg,var(--gold) 0 10px,var(--hazard-dark) 10px 20px);
+    color:var(--hazard-dark);
+    padding:5px 10px 5px 6px;border-radius:5px;
+    margin-bottom:16px;
+  }
+  .meter-panel .hazard-tag span{
+    background:var(--green-950);color:var(--gold-light);
+    padding:3px 8px;border-radius:3px;
+  }
+  .meter-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.16);
+  }
+  .meter-row:last-of-type{border-bottom:none;}
+  .meter-label{font-size:12.5px;color:rgba(255,255,255,0.65);}
+  .meter-value{
+    font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:20px;color:var(--gold-light);
+  }
+  .meter-value.big{font-size:26px;color:var(--gold);}
+  .meter-foot{
+    margin-top:14px;font-size:11.5px;color:rgba(255,255,255,0.5);
+  }
+
+  /* ---------- Section shells ---------- */
+  section{padding:104px 0;}
+  .section-cream{background:var(--cream);}
+  .section-dark{background:var(--green-950);color:var(--white);}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(28px,3.2vw,40px);margin-top:14px;}
+  .section-head p{color:var(--slate);font-size:16.5px;margin-top:16px;}
+  .section-dark .section-head p{color:rgba(255,255,255,0.72);}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;grid-template-columns:1fr 0.95fr;gap:64px;align-items:center;
+  }
+  .about-copy p{color:var(--slate);font-size:16.5px;margin-top:18px;}
+  .about-media{position:relative;}
+  .about-media img{
+    border-radius:var(--radius);box-shadow:var(--shadow);width:100%;
+  }
+  .about-media .float-card{
+    position:absolute;left:-28px;bottom:-28px;
+    background:var(--white);border:1px solid var(--line);
+    border-radius:14px;padding:16px 20px;
+    box-shadow:0 20px 40px -20px rgba(10,42,32,0.3);
+    display:flex;align-items:center;gap:12px;
+    max-width:230px;
+  }
+  .float-card .dot{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--green-900);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+  }
+  .float-card strong{display:block;font-size:13.5px;color:var(--ink);}
+  .float-card span{font-size:12px;color:var(--slate);}
+
+  /* ---------- Como funciona (circuit) ---------- */
+  .circuit{
+    position:relative;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    margin-top:20px;
+  }
+  .circuit::before{
+    content:"";position:absolute;top:34px;left:6%;right:6%;height:2px;
+    background:repeating-linear-gradient(90deg, var(--gold) 0 10px, transparent 10px 18px);
+    z-index:0;
+  }
+  .circuit-item{
+    position:relative;z-index:1;padding:0 18px;text-align:left;
+  }
+  .circuit-node{
+    width:68px;height:68px;border-radius:12px;
+    background:var(--green-900);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;
+    box-shadow:0 14px 26px -14px rgba(14,59,44,0.6);
+    margin-bottom:22px;
+  }
+  .circuit-item h3{font-size:18.5px;margin-bottom:10px;}
+  .circuit-item p{color:var(--slate);font-size:15px;}
+
+  /* ---------- Benefícios ---------- */
+  .benefit-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+  }
+  .benefit-card{
+    background:var(--white);border:1px solid var(--line);border-radius:16px;
+    padding:30px 26px;transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .benefit-card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(10,42,32,0.28);}
+  .benefit-icon{
+    width:52px;height:52px;border-radius:12px;
+    background:var(--gold-light);
+    display:flex;align-items:center;justify-content:center;font-size:24px;
+    margin-bottom:20px;
+  }
+  .benefit-card:nth-child(2n) .benefit-icon{background:#DCEFE3;}
+  .benefit-card h3{font-size:17.5px;margin-bottom:8px;}
+  .benefit-card p{color:var(--slate);font-size:14.5px;}
+
+  /* ---------- Para quem é indicado ---------- */
+  .audience{
+    position:relative;overflow:hidden;
+  }
+  .audience-media{position:absolute;inset:0;z-index:0;}
+  .audience-media img{width:100%;height:100%;object-fit:cover;opacity:0.28;}
+  .audience-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, var(--green-950) 0%, rgba(10,42,32,0.94) 100%);}
+  .audience .container{position:relative;z-index:1;}
+  .audience-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;
+  }
+  .audience-card{
+    border:1px solid rgba(255,255,255,0.16);border-radius:16px;
+    padding:28px 20px;text-align:center;background:rgba(255,255,255,0.03);
+  }
+  .audience-card .ic{font-size:30px;margin-bottom:14px;}
+  .audience-card h4{font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--white);font-weight:600;}
+
+  /* ---------- Depoimentos ---------- */
+  .testi-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .testi-card{
+    background:var(--cream);border-radius:16px;padding:30px 28px;
+    border:1px solid var(--line);
+  }
+  .stars{color:var(--gold-deep);font-size:15px;letter-spacing:2px;margin-bottom:14px;}
+  .testi-card p{font-size:15.5px;color:var(--ink);margin-bottom:18px;}
+  .testi-who{display:flex;align-items:center;gap:10px;}
+  .testi-avatar{
+    width:38px;height:38px;border-radius:50%;background:var(--green-900);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;
+  }
+  .testi-who strong{display:block;font-size:13.5px;}
+  .testi-who span{font-size:12px;color:var(--slate);}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:820px;}
+  details{
+    border-bottom:1px solid var(--line);padding:22px 0;
+  }
+  details summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    font-family:'Space Grotesk',sans-serif;font-size:17.5px;font-weight:600;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary .plus{
+    flex-shrink:0;width:30px;height:30px;border-radius:50%;
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-size:17px;color:var(--green-900);transition:transform .25s ease;
+  }
+  details[open] summary .plus{transform:rotate(45deg);background:var(--gold-light);border-color:transparent;}
+  details p{color:var(--slate);font-size:15.5px;margin-top:16px;padding-right:50px;}
+
+  /* ---------- CTA Final ---------- */
+  .final-cta{
+    position:relative;overflow:hidden;
+    text-align:center;
+  }
+  .final-cta-media{position:absolute;inset:0;z-index:0;}
+  .final-cta-media img{width:100%;height:100%;object-fit:cover;opacity:0.22;}
+  .final-cta-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, var(--green-950) 10%, var(--green-900) 100%);}
+  .final-cta .container{position:relative;z-index:1;}
+  .final-cta h2{color:var(--white);font-size:clamp(28px,4vw,44px);max-width:680px;margin:16px auto 18px;}
+  .final-cta p{color:rgba(255,255,255,0.78);font-size:17px;max-width:520px;margin:0 auto 34px;}
+  .final-cta .ctas{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--green-950);color:rgba(255,255,255,0.7);padding:64px 0 28px;}
+  .footer-grid{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;
+    padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .footer-brand img{height:46px;width:46px;border-radius:50%;}
+  .footer-brand strong{color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:15.5px;}
+  .footer-col h5{
+    font-family:'IBM Plex Mono',monospace;color:var(--gold-light);font-size:12px;
+    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;font-weight:600;
+  }
+  .footer-col a, .footer-col p{display:block;font-size:14.5px;margin-bottom:10px;color:rgba(255,255,255,0.68);}
+  .footer-col a:hover{color:var(--gold-light);}
+  .footer-bottom{
+    padding-top:26px;display:flex;justify-content:space-between;align-items:center;
+    font-size:13px;color:rgba(255,255,255,0.45);flex-wrap:wrap;gap:10px;
+  }
+
+  /* ---------- Floating WhatsApp ---------- */
+  .float-whatsapp{
+    position:fixed;right:22px;bottom:22px;z-index:200;
+    background:#1FAF52;color:var(--white);
+    width:60px;height:60px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 30px -10px rgba(31,175,82,0.65);
+    transition:transform .2s ease;
+  }
+  .float-whatsapp:hover{transform:scale(1.07);}
+  .float-whatsapp svg{width:29px;height:29px;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .meter-panel{max-width:420px;}
+    .about-grid{grid-template-columns:1fr;gap:40px;}
+    .about-media .float-card{left:16px;bottom:-24px;}
+    .circuit{grid-template-columns:repeat(2,1fr);gap:36px 20px;}
+    .circuit::before{display:none;}
+    .benefit-grid{grid-template-columns:repeat(2,1fr);}
+    .audience-grid{grid-template-columns:repeat(2,1fr);}
+    .testi-wrap{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  }
+  @media (max-width:760px){
+    nav.main-links{
+      position:fixed;top:78px;left:0;right:0;bottom:0;
+      background:var(--white);
+      flex-direction:column;align-items:flex-start;
+      padding:30px 24px;gap:26px;
+      transform:translateX(100%);transition:transform .3s ease;
+      overflow-y:auto;
+    }
+    nav.main-links.open{transform:translateX(0);}
+    nav.main-links a{font-size:19px;}
+    .burger{display:block;}
+    .header-actions .btn-sm.desktop-only{display:none;}
+    section{padding:72px 0;}
+    .hero{min-height:auto;}
+    .hero-inner{padding:100px 0 48px;}
+    .benefit-grid{grid-template-columns:1fr;}
+    .audience-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:30px;}
+    .footer-bottom{flex-direction:column;align-items:flex-start;}
+    details p{padding-right:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <div class="container nav-wrap">
+    <a href="#inicio" class="brand">
+      <img src="img/logo.jpg" alt="Logo RL Consultoria em Energia Solar">
+      <span class="brand-text"><strong>RL Consultoria</strong>Energia Solar</span>
+    </a>
+
+    <nav class="main-links" id="mainNav">
+      <a href="#inicio">Início</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#beneficios">Benefícios</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="#contato">Contato</a>
+      <a class="btn btn-whatsapp btn-sm mobile-only" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20solicitar%20uma%20simula%C3%A7%C3%A3o%20gratuita." target="_blank" rel="noopener">Solicitar simulação</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-gold btn-sm desktop-only" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20solicitar%20uma%20simula%C3%A7%C3%A3o%20gratuita." target="_blank" rel="noopener">Solicitar Simulação Gratuita</a>
+      <button class="burger" id="burgerBtn" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="inicio">
+  <div class="hero-media">
+    <img src="img/hero.jpg" alt="Vista aérea de empresa com telhado coberto por placas solares e equipe da RL Consultoria instalando o sistema">
+  </div>
+  <div class="hero-inner">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow on-dark">Energia solar fotovoltaica</span>
+        <h1>Reduza sua conta de luz com <em>energia solar</em> de verdade</h1>
+        <p class="lead">Encontre a melhor solução em energia solar para sua residência ou empresa, com atendimento personalizado do início ao fim do processo.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-gold" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20fazer%20uma%20an%C3%A1lise%20gratuita." target="_blank" rel="noopener">☀️ Faça uma análise gratuita</a>
+          <a class="btn btn-outline-light" href="#como-funciona">Como funciona</a>
+        </div>
+      </div>
+
+      <div class="meter-panel">
+        <span class="hazard-tag">⚡ <span>Geração própria</span></span>
+        <div class="meter-row">
+          <span class="meter-label">Conta média sem solar</span>
+          <span class="meter-value">R$ 480<span style="font-size:13px;color:rgba(255,255,255,0.5);">/mês</span></span>
+        </div>
+        <div class="meter-row">
+          <span class="meter-label">Redução estimada</span>
+          <span class="meter-value big">até 95%</span>
+        </div>
+        <div class="meter-row">
+          <span class="meter-label">Retorno do investimento</span>
+          <span class="meter-value">~ 4 anos</span>
+        </div>
+        <p class="meter-foot">Valores ilustrativos — sua economia real é calculada na simulação gratuita.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APRESENTAÇÃO RL ================= -->
+<section id="sobre">
+  <div class="container about-grid">
+    <div class="about-copy">
+      <span class="eyebrow">Quem é a RL</span>
+      <h2>Consultoria especializada em energia solar</h2>
+      <p>A RL Consultoria em Energia Solar auxilia clientes na escolha de soluções fotovoltaicas, oferecendo orientação, análise de viabilidade e acompanhamento durante o processo de contratação junto a empresa especializada em instalação.</p>
+      <p>Você não precisa entender de energia solar — a gente traduz o técnico em decisão simples, com transparência do primeiro contato até a instalação.</p>
+      <div style="margin-top:28px;">
+        <a class="btn btn-outline-dark" href="#duvidas">Ver perguntas frequentes</a>
+      </div>
+    </div>
+    <div class="about-media">
+      <img src="img/marketing.jpg" alt="Casa residencial com placas solares instaladas no telhado, atendida pela RL Consultoria">
+      <div class="float-card">
+        <div class="dot">🏠</div>
+        <div>
+          <strong>Instalação residencial</strong>
+          <span>Foco em economia real na conta de luz</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMO FUNCIONA ================= -->
+<section class="section-cream" id="como-funciona">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">O processo</span>
+      <h2>Como funciona</h2>
+      <p>Do primeiro contato até a instalação, cada etapa é conduzida com acompanhamento próximo da RL.</p>
+    </div>
+
+    <div class="circuit">
+      <div class="circuit-item">
+        <div class="circuit-node">CT-01</div>
+        <h3>Análise do consumo</h3>
+        <p>Entendemos seu perfil de consumo de energia.</p>
+      </div>
+      <div class="circuit-item">
+        <div class="circuit-node">CT-02</div>
+        <h3>Estudo da solução</h3>
+        <p>Identificamos uma alternativa adequada para sua necessidade.</p>
+      </div>
+      <div class="circuit-item">
+        <div class="circuit-node">CT-03</div>
+        <h3>Apresentação da proposta</h3>
+        <p>Você recebe uma solução personalizada.</p>
+      </div>
+      <div class="circuit-item">
+        <div class="circuit-node">CT-04</div>
+        <h3>Instalação especializada</h3>
+        <p>A instalação é realizada por empresa especializada parceira.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BENEFÍCIOS ================= -->
+<section id="beneficios">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Por que ir para o solar</span>
+      <h2>Benefícios da energia solar</h2>
+    </div>
+
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">☀️</div>
+        <h3>Economia na conta de luz</h3>
+        <p>Reduza seus gastos com energia.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🌱</div>
+        <h3>Energia limpa</h3>
+        <p>Contribua para um futuro sustentável.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🏠</div>
+        <h3>Valorização do imóvel</h3>
+        <p>Sistemas solares agregam valor ao patrimônio.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📉</div>
+        <h3>Mais previsibilidade</h3>
+        <p>Menor dependência dos aumentos tarifários.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARA QUEM É INDICADO ================= -->
+<section class="audience">
+  <div class="audience-media">
+    <img src="img/obra.jpg" alt="Equipe da RL Consultoria instalando placas solares em telhado comercial">
+  </div>
+  <div class="container">
+    <div class="section-head center" style="margin-bottom:0;">
+      <span class="eyebrow on-dark">Onde a solar funciona</span>
+      <h2 style="color:#fff;">Para quem é indicado</h2>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="ic">🏠</div>
+        <h4>Residências</h4>
+      </div>
+      <div class="audience-card">
+        <div class="ic">🏪</div>
+        <h4>Comércios</h4>
+      </div>
+      <div class="audience-card">
+        <div class="ic">🏢</div>
+        <h4>Empresas</h4>
+      </div>
+      <div class="audience-card">
+        <div class="ic">🌱</div>
+        <h4>Propriedades rurais</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEPOIMENTOS ================= -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Quem já confiou</span>
+      <h2>Depoimentos</h2>
+    </div>
+    <div class="testi-wrap">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Atendimento excelente e ajudou a encontrar a melhor solução."</p>
+        <div class="testi-who">
+          <div class="testi-avatar">MC</div>
+          <div><strong>Marcos C.</strong><span>Cliente residencial</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>Explicaram cada etapa com calma e sem enrolação. Me senti seguro para decidir.</p>
+        <div class="testi-who">
+          <div class="testi-avatar">JR</div>
+          <div><strong>Juliana R.</strong><span>Cliente comercial</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>Acompanhamento próximo do início ao fim, direto com quem entende do assunto.</p>
+        <div class="testi-who">
+          <div class="testi-avatar">PS</div>
+          <div><strong>Pedro S.</strong><span>Propriedade rural</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section-cream" id="duvidas">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Tire suas dúvidas</span>
+      <h2>Perguntas frequentes</h2>
+    </div>
+
+    <div class="faq-list">
+      <details open>
+        <summary>Preciso pagar tudo à vista?<span class="plus">+</span></summary>
+        <p>Existem opções de financiamento conforme disponibilidade.</p>
+      </details>
+      <details>
+        <summary>A RL realiza a instalação?<span class="plus">+</span></summary>
+        <p>A RL atua na consultoria e representação comercial, encaminhando a instalação para empresa especializada parceira.</p>
+      </details>
+      <details>
+        <summary>Quanto posso economizar?<span class="plus">+</span></summary>
+        <p>Depende do consumo e das características do imóvel. Por isso, a simulação gratuita é personalizada para o seu caso.</p>
+      </details>
+      <details>
+        <summary>Quanto tempo leva o processo completo?<span class="plus">+</span></summary>
+        <p>Varia conforme a complexidade do projeto e a etapa de aprovação junto à concessionária de energia, mas você acompanha cada fase com a RL.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="final-cta" id="contato">
+  <div class="final-cta-media">
+    <img src="img/quadro.jpg" alt="Detalhe de quadro elétrico com medidor de geração própria de energia solar">
+  </div>
+  <div class="container">
+    <span class="eyebrow on-dark">Fale com a RL</span>
+    <h2>Quer saber quanto você pode economizar?</h2>
+    <p>Solicite uma avaliação sem compromisso e receba uma proposta personalizada para sua residência, comércio, empresa ou propriedade rural.</p>
+    <div class="ctas">
+      <a class="btn btn-whatsapp" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20saber%20quanto%20posso%20economizar%20com%20energia%20solar." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M17.47 14.38c-.29-.15-1.7-.84-1.97-.93-.26-.1-.46-.15-.65.15-.19.29-.75.93-.92 1.12-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.77-1.44-1.71-1.6-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.58-.9-2.16-.24-.57-.48-.5-.65-.5-.17-.01-.36-.01-.56-.01s-.51.07-.78.36c-.26.29-1.01.99-1.01 2.42s1.04 2.81 1.18 3c.15.19 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.33.19 1.83.11.56-.08 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.37-.07-.12-.26-.19-.55-.34z"/><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12.02 22C17.54 22 22 17.52 22 12S17.54 2 12.02 2zm0 18.15c-1.66 0-3.2-.48-4.5-1.31l-.32-.2-3 .79.8-2.93-.21-.3a8.14 8.14 0 0 1-1.27-4.4c0-4.5 3.66-8.16 8.5-8.16 4.55 0 8.24 3.66 8.24 8.16 0 4.5-3.69 8.35-8.24 8.35z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a class="btn btn-outline-light" href="#como-funciona">Ver como funciona</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="img/logo.jpg" alt="Logo RL Consultoria em Energia Solar">
+          <strong>RL Consultoria<br>em Energia Solar</strong>
+        </div>
+        <p style="max-width:280px;">Consultoria e representação comercial em energia solar fotovoltaica.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navegação</h5>
+        <a href="#inicio">Início</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="#duvidas">Dúvidas</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <p>Área de atendimento: sob consulta</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> RL Consultoria em Energia Solar. Todos os direitos reservados.</span>
+      <span>Consultoria e representação comercial em energia solar fotovoltaica.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= WHATSAPP FLUTUANTE ================= -->
+<a class="float-whatsapp" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20energia%20solar." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.29-.15-1.7-.84-1.97-.93-.26-.1-.46-.15-.65.15-.19.29-.75.93-.92 1.12-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.77-1.44-1.71-1.6-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.58-.9-2.16-.24-.57-.48-.5-.65-.5-.17-.01-.36-.01-.56-.01s-.51.07-.78.36c-.26.29-1.01.99-1.01 2.42s1.04 2.81 1.18 3c.15.19 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.33.19 1.83.11.56-.08 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.37-.07-.12-.26-.19-.55-.34z"/><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12.02 22C17.54 22 22 17.52 22 12S17.54 2 12.02 2zm0 18.15c-1.66 0-3.2-.48-4.5-1.31l-.32-.2-3 .79.8-2.93-.21-.3a8.14 8.14 0 0 1-1.27-4.4c0-4.5 3.66-8.16 8.5-8.16 4.55 0 8.24 3.66 8.24 8.16 0 4.5-3.69 8.35-8.24 8.35z"/></svg>
+</a>
+
+<script>
+  // header shadow on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  // mobile nav toggle
+  const burger = document.getElementById('burgerBtn');
+  const nav = document.getElementById('mainNav');
+  burger.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => nav.classList.remove('open'));
+  });
+
+  // footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
